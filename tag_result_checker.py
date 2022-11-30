@@ -28,7 +28,7 @@ LEV_DIST_CUTOFF = 3
 
 # engine = create_engine('sqlite:///label_checking.sqlite')#, echo=True)
 engine = create_engine(
-    'sqlite:////usr/local/bgnn/label_checking.sqlite')  # , echo=True)
+    'sqlite:///ieee-cas-label-checking.sqlite')  # , echo=True)
 conn = engine.connect()
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -37,15 +37,13 @@ Base = declarative_base()
 
 
 class ErrTypes(enum.Enum):
-    auto_wrong_ocr = 1
-    auto_wrong_tag = 2
-    auto_wrong_synonym = 3
-    auto_wrong_other = 4
-    both_wrong = 5
-    auto_right = 6
-    both_right = 7
-    both_right_ocr_failed = 8
-    both_right_tag_issue = 9
+    ocr = 1
+    tilt = 2
+    synonym = 3
+    complex_name_format = 4
+    inadmissibility = 5
+    true_error = 6
+    ok = 7
 
 
 class Record(Base):
@@ -95,56 +93,27 @@ def load_next():
                                            lev_dist_above, done, count - done))
 
 
-def both_corr_tag_issue():
-    name = Record(filename=filename, sci_name=curr_metadata['metadata_name'].capitalize(),
-                  err_type=ErrTypes.both_right_tag_issue, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
+def classification_button_callback(err_type, metadata_correct=True):
+    def callback():
+        if not metadata_correct:
+            name = window.scientific_name.toPlainText()
+        else:
+            try:
+                name = curr_metadata['metadata_name'].capitalize()
+            except KeyError:
+                name = "Errored out, must run program to debug"
+        name = Record(filename=filename, sci_name=name,
+                      err_type=err_type, description=window.further_descr.toPlainText())
+        session.add(name)
+        session.commit()
+        load_next()
+    return callback
 
 
-def both_corr_ocr_failed():
-    name = Record(filename=filename, sci_name=curr_metadata['metadata_name'].capitalize(),
-                  err_type=ErrTypes.both_right_ocr_failed, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
-
-
-def wrong_other():
-    try:
-        name = curr_metadata['metadata_name']
-    except KeyError:
-        name = "Errored out, must run program to debug"
-    name = Record(filename=filename, sci_name=name,
-                  err_type=ErrTypes.auto_wrong_other, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
-
-
-def ocr_mistake():
-    name = Record(filename=filename, sci_name=curr_metadata['metadata_name'].capitalize(),
-                  err_type=ErrTypes.auto_wrong_ocr, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
-
-
-def both_correct():
-    name = Record(filename=filename, sci_name=curr_metadata['metadata_name'].capitalize(),
-                  err_type=ErrTypes.both_right, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
-
-
-def auto_correct():
-    name = Record(filename=filename, sci_name=curr_metadata['best_name'].capitalize(),
-                  err_type=ErrTypes.auto_right, description=window.further_descr.toPlainText())
-    session.add(name)
-    session.commit()
-    load_next()
+def descr_append_callback(descr_append_text):
+    def callback():
+        window.further_descr.setPlainText(window.further_descr.toPlainText() + descr_append_text + ' ')
+    return callback
 
 
 def get_filename():
@@ -196,12 +165,15 @@ def main():
 
     load_next()
 
-    window.csv_wrong.clicked.connect(auto_correct)
-    window.both_correct.clicked.connect(both_correct)
-    window.ocr_mistake.clicked.connect(ocr_mistake)
-    window.wrong_other.clicked.connect(wrong_other)
-    window.both_correct_ocr_failed.clicked.connect(both_corr_ocr_failed)
-    window.both_correct_tag_issue.clicked.connect(both_corr_tag_issue)
+    window.ocr.clicked.connect(classification_button_callback(ErrTypes.ocr))
+    window.ruler_noise.clicked.connect(descr_append_callback("Ruler noise"))
+    window.handwritten_noise.clicked.connect(descr_append_callback("Handwritten noise"))
+    window.tilt.clicked.connect(classification_button_callback(ErrTypes.tilt))
+    window.synonym.clicked.connect(classification_button_callback(ErrTypes.synonym))
+    window.complex_name_format.clicked.connect(classification_button_callback(ErrTypes.complex_name_format))
+    window.inadmissibility.clicked.connect(classification_button_callback(ErrTypes.inadmissibility))
+    window.true_error.clicked.connect(classification_button_callback(ErrTypes.true_error))
+    window.ok.clicked.connect(classification_button_callback(ErrTypes.ok))
 
     window.show()
     exit_code = app.exec()
@@ -210,5 +182,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # if True:
     main()

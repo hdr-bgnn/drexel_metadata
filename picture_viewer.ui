@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QPushButton" name="ocr_mistake">
+  <widget class="QPushButton" name="ocr">
    <property name="geometry">
     <rect>
      <x>780</x>
@@ -23,9 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>CSV Correct
-Auto Wrong
-OCR Mistake</string>
+    <string>OCR error</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="label_text">
@@ -70,7 +68,7 @@ OCR Mistake</string>
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="csv_wrong">
+  <widget class="QPushButton" name="ruler_noise">
    <property name="geometry">
     <rect>
      <x>1120</x>
@@ -80,11 +78,11 @@ OCR Mistake</string>
     </rect>
    </property>
    <property name="text">
-    <string>CSV Wrong
-Auto Correct</string>
+    <string>Ruler noise
+(OCR)</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="both_wrong">
+  <widget class="QPushButton" name="handwritten_noise">
    <property name="geometry">
     <rect>
      <x>780</x>
@@ -94,7 +92,9 @@ Auto Correct</string>
     </rect>
    </property>
    <property name="text">
-    <string>Both Wrong</string>
+    <string>Handwritten
+INHS ID 
+noise (OCR)</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="scientific_name">
@@ -117,10 +117,10 @@ Auto Correct</string>
     </rect>
    </property>
    <property name="text">
-    <string>Actual Name (Both Wrong):</string>
+    <string>Actual Name (metadata wrong):</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="tag_issue">
+  <widget class="QPushButton" name="true_error">
    <property name="geometry">
     <rect>
      <x>900</x>
@@ -130,12 +130,12 @@ Auto Correct</string>
     </rect>
    </property>
    <property name="text">
-    <string>CSV Correct
-Auto Wrong
-Tag Issue</string>
+    <string>True
+metadata
+error</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="both_correct_tag_issue">
+  <widget class="QPushButton" name="tilt">
    <property name="geometry">
     <rect>
      <x>1010</x>
@@ -145,11 +145,10 @@ Tag Issue</string>
     </rect>
    </property>
    <property name="text">
-    <string>Both Correct
-Tag Issue</string>
+    <string>Tilt</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="both_correct">
+  <widget class="QPushButton" name="synonym">
    <property name="geometry">
     <rect>
      <x>900</x>
@@ -159,10 +158,11 @@ Tag Issue</string>
     </rect>
    </property>
    <property name="text">
-    <string>Both Correct</string>
+    <string>Potential
+synonym</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="wrong_other">
+  <widget class="QPushButton" name="complex_name_format">
    <property name="geometry">
     <rect>
      <x>1120</x>
@@ -172,12 +172,12 @@ Tag Issue</string>
     </rect>
    </property>
    <property name="text">
-    <string>CSV Correct
-Auto Wrong
-Other</string>
+    <string>Complex
+name
+format</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="both_correct_ocr_failed">
+  <widget class="QPushButton" name="inadmissibility">
    <property name="geometry">
     <rect>
      <x>1010</x>
@@ -187,8 +187,7 @@ Other</string>
     </rect>
    </property>
    <property name="text">
-    <string>Both Correct
-OCR Failed</string>
+    <string>Inadmissibility</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="further_descr">
@@ -214,7 +213,7 @@ OCR Failed</string>
     <string>Further Description:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="gen_report">
+  <widget class="QPushButton" name="ok">
    <property name="geometry">
     <rect>
      <x>1230</x>
@@ -224,8 +223,7 @@ OCR Failed</string>
     </rect>
    </property>
    <property name="text">
-    <string>Gen
-Report</string>
+    <string>OK</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="sys_status">
