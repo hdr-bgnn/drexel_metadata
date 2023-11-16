@@ -1,0 +1,36 @@
+cff-version: 0.6
+date-released: "2023-07-25"
+authors:
+  - family-names: Karnani
+    given-names: Kevin
+    orcid: "https://orcid.org/0000-0002-3108-7941"
+  - family-names: Pepper
+    given-names: Joel
+    orcid: "https://orcid.org/0000-0002-1601-8729"
+  - family-names: Bakis
+    given-names: Yasin
+    orcid: "https://orcid.org/0000-0001-6144-9440"
+  - family-names: Wang
+    given-names: Xiaojun
+    orcid: "https://orcid.org/0000-0002-2995-9050"
+  - family-names: "Bart, Jr."
+    given-names: Henry
+    orcid: "https://orcid.org/0000-0002-5662-9444"
+  - family-names: Breen
+    given-names: "David E"
+    orcid: "https://orcid.org/0000-0002-1376-5008"
+  - family-names: Greenberg
+    given-names: Jane
+    orcid: "https://orcid.org/0000-0001-7819-5360"
+identifiers:
+  - description: "This model was designed to generate metadata for images of [museum] fish specimens. In addition to the metadata and quality metrics achieved with our initial model (detailed in Automatic Metadata Generation for Fish Specimen Image Collections, bioRXiv), this updated model also generates various geometric and statistical properties on the mask generated over the biological specimen presented. Some examples of the new analytical features include convex area, eccentricity, perimeter, and skew. The updates to our model further improve on the accuracy, and time and labor cost over human generation."
+    type: doi
+    value: 10.57967/hf/0904
+keywords:
+  - "imageomics"
+  - "metadata"
+license: MIT
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/hdr-bgnn/drexel_metadata"
+title: "Drexel metadata generator"
+version: 0.6
