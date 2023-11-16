@@ -30,7 +30,6 @@ keywords:
   - "imageomics"
   - "metadata"
 license: MIT
-message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/hdr-bgnn/drexel_metadata"
 title: "Drexel metadata generator"
 version: 0.6
