@@ -1,5 +1,6 @@
 cff-version: 1.0.0
 date-released: "2023-07-25"
+abstract: "This model was designed to generate metadata for images of [museum] fish specimens. In addition to the metadata and quality metrics achieved with our initial model (detailed in Automatic Metadata Generation for Fish Specimen Image Collections, bioRXiv), this updated model also generates various geometric and statistical properties on the mask generated over the biological specimen presented. Some examples of the new analytical features include convex area, eccentricity, perimeter, and skew. The updates to our model further improve on the accuracy, and time and labor cost over human generation."
 authors:
   - family-names: Karnani
     given-names: Kevin
@@ -23,7 +24,7 @@ authors:
     given-names: Jane
     orcid: "https://orcid.org/0000-0001-7819-5360"
 identifiers:
-  - description: "This model was designed to generate metadata for images of [museum] fish specimens. In addition to the metadata and quality metrics achieved with our initial model (detailed in Automatic Metadata Generation for Fish Specimen Image Collections, bioRXiv), this updated model also generates various geometric and statistical properties on the mask generated over the biological specimen presented. Some examples of the new analytical features include convex area, eccentricity, perimeter, and skew. The updates to our model further improve on the accuracy, and time and labor cost over human generation."
+  - description: "Snapshot of Drexel-metadata-generator latest version."
     type: doi
     value: 10.57967/hf/0904
 keywords:
